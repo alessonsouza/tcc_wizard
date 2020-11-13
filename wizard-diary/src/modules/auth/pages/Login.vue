@@ -48,10 +48,14 @@ export default {
   }),
   methods: {
     ...mapActions('auth', ['ActionDoLogin']),
-    submit () {
-      this.ActionDoLogin(this.form).then(res => {
-        console.log(res.data)
-      })
+    async submit () {
+      try {
+        await this.ActionDoLogin(this.form)
+
+        this.$router.push({ name: 'home' })
+      } catch (error) {
+        alert(error.body ? error.body.message : 'Não foi possível realizar o login')
+      }
     }
   }
 
