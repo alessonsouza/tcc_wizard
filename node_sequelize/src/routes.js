@@ -3,9 +3,13 @@ const UserController = require('./controllers/UserController');
 const AddressController = require('./controllers/AddressController');
 const CourseController = require('./controllers/CourseController');
 const authMiddleware = require('./middlewares/auth');
+const cors = require('cors');
 
 const router = express.Router();
 
+var options = {
+    origin: 'http://localhost:8080'
+}
 // router.get('/', (req, res) => {
 //     return res.send('viado!');
 // });
@@ -15,7 +19,7 @@ router.post('/users', UserController.store);
 router.put('/users/:user_id', UserController.update);
 router.delete('/users/:user_id', UserController.delete);
 //login
-router.post('/users/login', UserController.login);
+router.post('/users/login', cors(options), UserController.login);
 
 router.use(authMiddleware);
 
