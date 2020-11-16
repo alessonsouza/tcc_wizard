@@ -15,11 +15,14 @@ var options = {
 // });
 
 router.get('/users', authMiddleware, UserController.index);
+
+
 router.post('/users', UserController.store);
 router.put('/users/:user_id', UserController.update);
 router.delete('/users/:user_id', UserController.delete);
 //login
 router.post('/users/login', cors(options), UserController.login);
+router.get('/users/load-session', UserController.loadSession);
 
 router.use(authMiddleware);
 

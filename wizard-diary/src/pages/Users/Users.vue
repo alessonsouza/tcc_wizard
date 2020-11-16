@@ -12,12 +12,15 @@
         <md-toolbar class="md-transparent" md-elevation="0">Menu Principal</md-toolbar>
 
        <md-list>
-          <md-list-item>
-            <md-icon>
-              <button
-              >Usuários</button>
-              </md-icon>
-            <span class="md-list-item-text">Inbox</span>
+          <md-list-item to="/" exact>Cadastro usuário<code></code>
+             <md-icon >send</md-icon>
+            <span class="md-list-item-text"></span>
+
+             <md-list slot="md-expand">
+            <md-list-item class="md-inset">World</md-list-item>
+            <md-list-item class="md-inset">Europe</md-list-item>
+            <md-list-item class="md-inset">South America</md-list-item>
+          </md-list>
           </md-list-item>
 
           <md-list-item>
@@ -39,28 +42,25 @@
 
       <md-app-content>
         <div>
-    <md-table  md-card>
+    <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
-        <h1 class="md-title">2ª Feira</h1>
+        <h1 class="md-title">Users</h1>
       </md-table-toolbar>
 
-     <!-- <md-table-row>
+     <md-table-row>
         <md-table-head md-numeric>ID</md-table-head>
-        <md-table-head>{{user.name}}</md-table-head>
+        <md-table-head>Name</md-table-head>
         <md-table-head>Email</md-table-head>
-        <md-table-head>Gender</md-table-head>
-        <md-table-head>Job Title</md-table-head>
 
-            <md-icon>send</md-icon>
-
-      </md-table-row> -->
+      </md-table-row>
 
       <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-      <!-- <md-table-row slot="md-table-row" slot-scope="{ item }"> -->
-        <!-- <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
+       <md-table-row slot="md-table-row" slot-scope="{ item }">
+        <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
         <md-table-cell md-label="name" md-sort-by="name">{{item.name}}</md-table-cell>
+        <md-table-cell md-label="email" md-sort-by="email">{{item.email}}</md-table-cell>
 
-      </md-table-row> -->
+      </md-table-row>
 
        <!-- <md-table-row>
         <md-table-cell md-numeric>2</md-table-cell>
@@ -92,21 +92,47 @@
 
    // Demo purposes only
   .md-drawer {
-    width: 830px;
+    width: 230px;
     max-width: calc(100vw - 125px);
   }
 </style>
 
 <script>
-import { mapState } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: 'Home',
+
+  mounted () {
+    this.ActionGetUsers()
+  },
+  methods: {
+    ...mapActions('users', ['ActionGetUsers'])
+  },
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('users', ['users'])
   },
   data: () => ({
     menuVisible: false
+    // users: [
+    //   {
+    //     email: 'alesson@gmail.com',
+    //     id: 3,
+    //     isLogged: true,
+    //     name: 'Alesson'
+    //   },
+    //   {
+    //     email: 'alesson@gmail.com',
+    //     id: 3,
+    //     isLogged: true,
+    //     name: 'Alesson'
+    //   },
+    //   {
+    //     email: 'alesson@gmail.com',
+    //     id: 3,
+    //     isLogged: true,
+    //     name: 'Alesson'
+    //   }
+    // ]
   })
 }
 </script>

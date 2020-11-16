@@ -4,9 +4,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
 
+
 function generateToken(params = {}) {
     return  jwt.sign(params, authConfig.secret, {
-        expiresIn: 78300,
+        expiresIn: 7200,
     });
 }
 
@@ -44,7 +45,7 @@ module.exports = {
 
         user.password = undefined;
 
-        const token = generateToken({ id: user.id });
+        const token = generateToken({ user });
 
         return res.status(200).send({
             status:1,
@@ -62,12 +63,40 @@ module.exports = {
         }
         return res.status(200).send({ users });
     },
+
+    async loadSession(req, res) {
+                
+        // const { user_id} = req.params;
+        const token = req.headers.authorization.split(' ')[1]
+
+        // let users = await User.findByPk(user_id);
+
+        // if (users == "" || users == null) {
+        //     return res.status(200).send({ message: "Nenhum usuario encontrado!"});
+        // }
+        // res.status(401).send({message: token})
+        // return
+        jwt.verify(token, authConfig.secret, (err, decoded) => {
+
+            // if (err) {
+            //     res.status(401).send({message: err})
+            //     return
+            // }
+            
+            res.status(200).send({
+                token,
+                user: decoded.user
+            })
+        })
+
+        // return res.status(200).send({ users });
+    },
     async store(req, res) {
         const { name, password, email} = req.body; //pego os dados
 
         const user = await User.create({ name, password, email}); // crio o usuário
 
-        const token = generateToken({ id: user.id });
+        const token = generateToken({user});
 
         return res.status(200).send({ // retorno o resultado do POST
             status: 1,

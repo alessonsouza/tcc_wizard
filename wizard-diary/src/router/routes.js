@@ -1,9 +1,11 @@
 import { routes as auth } from '../modules/auth'
 import { routes as home } from '../pages/Home'
+import { routes as users } from '../pages/Users'
 
 export default [
   ...auth,
   ...home,
+  ...users,
 
   {
     path: '/about',

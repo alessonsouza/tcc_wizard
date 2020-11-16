@@ -48,12 +48,17 @@ export default {
   }),
   methods: {
     ...mapActions('auth', ['ActionDoLogin']),
+    // ...mapActions('auth', ['ActionGetUsers']),
     async submit () {
       try {
         await this.ActionDoLogin(this.form)
+        // await this.ActionGetUsers()
+        // await this.ActionUserLogado(this.form.user.id)
 
         this.$router.push({ name: 'home' })
+        console.log(this.state)
       } catch (error) {
+        console.log(error)
         alert(error.body ? error.body.message : 'Não foi possível realizar o login')
       }
     }
