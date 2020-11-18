@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <!-- <div class="page-container">
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
@@ -12,15 +12,11 @@
         <md-toolbar class="md-transparent" md-elevation="0">Menu Principal</md-toolbar>
 
        <md-list>
-          <md-list-item to="/" exact>Cadastro usuário<code></code>
-             <md-icon >send</md-icon>
-            <span class="md-list-item-text"></span>
 
-             <md-list slot="md-expand">
-            <md-list-item class="md-inset">World</md-list-item>
-            <md-list-item class="md-inset">Europe</md-list-item>
-            <md-list-item class="md-inset">South America</md-list-item>
-          </md-list>
+         <md-list-item to="/">
+            <md-icon>home
+              </md-icon>
+            <span class="md-list-item-text">Home</span>
           </md-list-item>
 
           <md-list-item>
@@ -38,10 +34,11 @@
             <span class="md-list-item-text">Spam</span>
           </md-list-item>
         </md-list>
-      </md-app-drawer>
+      </md-app-drawer> -->
 
-      <md-app-content>
-        <div>
+      <!-- <md-app-content>
+        <div> -->
+          <div class="page-container">
     <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Users</h1>
@@ -78,10 +75,11 @@
         <md-table-cell>Community Outreach Specialist</md-table-cell>
       </md-table-row> -->
     </md-table>
-  </div>
-      </md-app-content>
-    </md-app>
-  </div>
+    </div>
+  <!--
+      </md-app-content> -->
+    <!-- </md-app>
+  </div> -->
 </template>
 
 <style lang="scss" scoped>

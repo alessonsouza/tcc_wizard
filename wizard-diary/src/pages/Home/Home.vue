@@ -10,18 +10,40 @@
 
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">Menu Principal</md-toolbar>
-
-       <md-list>
-          <md-list-item>
-            <md-icon>
-              <button
-              >Usuários</button>
+      <md-list>
+         <md-list-item to="/">
+            <md-icon>home
               </md-icon>
-            <span class="md-list-item-text">Inbox</span>
+            <span class="md-list-item-text">Home</span>
           </md-list-item>
+      </md-list>
+       <md-list md-expand>
 
-          <md-list-item>
-            <md-icon>send</md-icon>
+          <md-list-item md-expand>
+          <md-icon>home</md-icon>
+          <span class="md-list-item-text">Cadastros</span>
+
+          <md-list slot="md-expand">
+            <md-list-item  @click="userVisible = !userVisible" class="md-inset">Usuários</md-list-item>
+            <md-list-item class="md-inset">Music</md-list-item>
+            <md-list-item class="md-inset">Movies</md-list-item>
+            <md-list-item class="md-inset">TV Shows</md-list-item>
+          </md-list>
+        </md-list-item>
+          <!-- <md-list-item md-expand slot="md-expand" to="/">
+            <md-icon>home
+              </md-icon>
+            <span class="md-list-item-text">Home</span>
+
+            <md-list slot="md-expand">
+            <md-list-item class="md-inset">World</md-list-item>
+            <md-list-item class="md-inset">Europe</md-list-item>
+            <md-list-item class="md-inset">South America</md-list-item>
+          </md-list>
+          </md-list-item> -->
+
+          <!-- <md-list-item to="/users">
+            <md-icon>client</md-icon>
             <span class="md-list-item-text">Sent Mail</span>
           </md-list-item>
 
@@ -33,16 +55,17 @@
           <md-list-item>
             <md-icon>error</md-icon>
             <span class="md-list-item-text">Spam</span>
-          </md-list-item>
+          </md-list-item> -->
         </md-list>
+
       </md-app-drawer>
 
       <md-app-content>
         <div>
-    <md-table  md-card>
-      <md-table-toolbar>
-        <h1 class="md-title">2ª Feira</h1>
-      </md-table-toolbar>
+
+    <md-table visible="userVisible"  md-card>
+ <Users ></Users>
+        <!-- <h1 class="md-title">2ª Feira</h1> -->
 
      <!-- <md-table-row>
         <md-table-head md-numeric>ID</md-table-head>
@@ -95,18 +118,51 @@
     width: 830px;
     max-width: calc(100vw - 125px);
   }
+
+    $list-width: 320px;
+
+  .full-control {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+  }
+
+  .list {
+    width: $list-width;
+  }
+
+  .full-control > .md-list {
+    width: $list-width;
+    max-width: 100%;
+    height: 400px;
+    display: inline-block;
+    overflow: auto;
+    border: 1px solid rgba(#000, .12);
+    vertical-align: top;
+  }
+
+  .control {
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
 </style>
 
 <script>
 import { mapState } from 'vuex'
-
+import Users from '../Users/Users'
 export default {
   name: 'Home',
   computed: {
     ...mapState('auth', ['user'])
   },
+  components: {
+    Users
+  },
   data: () => ({
-    menuVisible: false
+    menuVisible: false,
+    userVisible: false
   })
 }
 </script>
