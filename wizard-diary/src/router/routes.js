@@ -1,12 +1,13 @@
 import { routes as auth } from '../modules/auth'
 import { routes as home } from '../pages/Home'
 import { routes as users } from '../pages/Users'
+import { routes as addUser } from '../cadastros/Users'
 
 export default [
   ...auth,
   ...home,
   ...users,
-
+  ...addUser,
   {
     path: '/about',
     name: 'About',

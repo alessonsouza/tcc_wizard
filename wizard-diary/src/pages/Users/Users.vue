@@ -39,6 +39,9 @@
       <!-- <md-app-content>
         <div> -->
           <div class="page-container">
+            <md-button class="md-fab md-primary md-fab-top-right" to="/cadastros-users">
+        <md-icon>add</md-icon>
+      </md-button>
     <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
       <md-table-toolbar>
         <h1 class="md-title">Users</h1>

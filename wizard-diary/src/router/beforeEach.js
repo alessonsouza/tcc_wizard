@@ -5,7 +5,7 @@
 import store from '../store'
 export default async (to, from, next) => {
 //   document.title = to.name
-//   console.log(to)
+  // console.log(to)
 
   if (to.name !== 'login' && !store.getters['auth/hasToken']) {
     try {

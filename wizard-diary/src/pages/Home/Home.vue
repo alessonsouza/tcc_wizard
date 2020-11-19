@@ -1,4 +1,5 @@
 <template>
+<div id="app">
   <div class="page-container">
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
@@ -17,14 +18,15 @@
             <span class="md-list-item-text">Home</span>
           </md-list-item>
       </md-list>
-       <md-list md-expand>
+        <md-list md-expand>
 
           <md-list-item md-expand>
           <md-icon>home</md-icon>
           <span class="md-list-item-text">Cadastros</span>
 
           <md-list slot="md-expand">
-            <md-list-item  @click="userVisible = !userVisible" class="md-inset">Usuários</md-list-item>
+            <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
+
             <md-list-item class="md-inset">Music</md-list-item>
             <md-list-item class="md-inset">Movies</md-list-item>
             <md-list-item class="md-inset">TV Shows</md-list-item>
@@ -56,7 +58,7 @@
             <md-icon>error</md-icon>
             <span class="md-list-item-text">Spam</span>
           </md-list-item> -->
-        </md-list>
+         </md-list>
 
       </md-app-drawer>
 
@@ -64,9 +66,9 @@
         <div>
 
     <md-table visible="userVisible"  md-card>
- <Users ></Users>
+      <router-view/>
         <!-- <h1 class="md-title">2ª Feira</h1> -->
-
+<!-- <router-view/> -->
      <!-- <md-table-row>
         <md-table-head md-numeric>ID</md-table-head>
         <md-table-head>{{user.name}}</md-table-head>
@@ -100,10 +102,13 @@
         <md-table-cell>Male</md-table-cell>
         <md-table-cell>Community Outreach Specialist</md-table-cell>
       </md-table-row> -->
-    </md-table>
-  </div>
-      </md-app-content>
-    </md-app>
+
+              </md-table>
+            </div>
+          </md-app-content>
+        </md-app>
+      </div>
+<router-view/>
   </div>
 </template>
 
@@ -151,14 +156,11 @@
 
 <script>
 import { mapState } from 'vuex'
-import Users from '../Users/Users'
+// import Users from '../Users/Users'
 export default {
   name: 'Home',
   computed: {
     ...mapState('auth', ['user'])
-  },
-  components: {
-    Users
   },
   data: () => ({
     menuVisible: false,
