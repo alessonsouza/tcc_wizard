@@ -102,20 +102,9 @@
             <div class="page-container">
               <md-button class="md-fab md-primary md-fab-top-right"  @click="userVisible = !userVisible">
                 <md-icon>add</md-icon>
-                <md-dialog :md-active.sync="userVisible" :md-fullscreen="true">
-                  <md-dialog-title>Cadastro de usuários</md-dialog-title>
-                    <md-dialog-content>
-                      <md-field>
-                          <label>Nome completo</label>
-                          <md-input v-model="name"></md-input>
-                        </md-field>
-                    </md-dialog-content>
-
-                    <md-dialog-actions>
-                      <md-button class="md-primary" @click="userVisible = false">Close</md-button>
-                      <md-button class="md-primary" @click="showDialog = false">Save</md-button>
-                    </md-dialog-actions>
-                  </md-dialog>
+                <md-dialog :md-active.sync="userVisible" :md-fullscreen="true" max-width="600px">
+                  <AddUser :userVisible.sync="userVisible" />
+                </md-dialog>
               </md-button>
             <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
@@ -184,14 +173,19 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-
+import AddUser from '../../cadastros/Users/AddUser'
 export default {
-
+  components: {
+    AddUser
+  },
   mounted () {
     this.ActionGetUsers()
   },
   methods: {
-    ...mapActions('users', ['ActionGetUsers'])
+    ...mapActions('users', ['ActionGetUsers']),
+    submmit () {
+      
+    }
   },
   computed: {
     ...mapState('users', ['users'])
@@ -199,9 +193,11 @@ export default {
   data: () => ({
     menuVisible: false,
     userVisible: false,
-    name: '',
-    email: '',
-    senha: ''
+    form: {
+      name: '',
+      email: '',
+      senha: ''
+    }
     // users: [
     //   {
     //     email: 'alesson@gmail.com',
