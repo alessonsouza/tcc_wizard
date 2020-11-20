@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div >
   <div class="page-container">
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
@@ -66,7 +66,7 @@
         <div>
 
     <md-table visible="userVisible"  md-card>
-      <router-view/>
+
         <!-- <h1 class="md-title">2ª Feira</h1> -->
 <!-- <router-view/> -->
      <!-- <md-table-row>
@@ -108,7 +108,6 @@
           </md-app-content>
         </md-app>
       </div>
-<router-view/>
   </div>
 </template>
 
