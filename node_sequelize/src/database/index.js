@@ -15,9 +15,11 @@ User.init(connection);
 Address.init(connection);
 Course.init(connection);
 
+
 User.associate(connection.models);
 Address.associate(connection.models);
 Course.associate(connection.models);
+
 // try {
 //     connection.authenticate();
 //     console.log('Connection has been established successfully.');

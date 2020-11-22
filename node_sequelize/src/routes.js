@@ -2,6 +2,7 @@ const express = require('express');
 const UserController = require('./controllers/UserController');
 const AddressController = require('./controllers/AddressController');
 const CourseController = require('./controllers/CourseController');
+const AlunoController = require('./controllers/AlunosController');
 const authMiddleware = require('./middlewares/auth');
 const cors = require('cors');
 
@@ -24,6 +25,11 @@ router.delete('/users/:user_id', UserController.delete);
 router.post('/users/login', cors(options), UserController.login);
 router.get('/users/load-session', UserController.loadSession);
 
+router.get('/alunos', AlunoController.index);
+router.post('/alunos', AlunoController.store);
+router.put('/alunos/:id', AlunoController.update);
+router.delete('/alunos/:id', AlunoController.delete);
+
 router.use(authMiddleware);
 
 router.get('/users/:user_id/address', AddressController.index);
@@ -34,6 +40,9 @@ router.delete('/users/:id/address', AddressController.delete);
 router.get('/users/:user_id/courses', CourseController.index);
 router.post('/users/:user_id/courses', CourseController.store);
 router.delete('/users/:user_id/courses', CourseController.delete);
+
+
+
 
 
 

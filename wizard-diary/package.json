@@ -47,7 +47,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "vue/space-infix-ops": "warn"
+    }
   },
   "browserslist": [
     "> 1%",

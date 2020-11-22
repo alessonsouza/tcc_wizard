@@ -23,6 +23,7 @@
             <span class="md-list-item-text">Cadastros</span>
 
           <md-list slot="md-expand">
+
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
             <md-list-item class="md-inset">Music</md-list-item>
             <md-list-item class="md-inset">Movies</md-list-item>
@@ -102,9 +103,7 @@
             <div class="page-container">
               <md-button class="md-fab md-primary md-fab-top-right"  @click="userVisible = !userVisible">
                 <md-icon>add</md-icon>
-                <md-dialog :md-active.sync="userVisible" :md-fullscreen="true" max-width="600px">
                   <AddUser :userVisible.sync="userVisible" />
-                </md-dialog>
               </md-button>
             <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
@@ -182,22 +181,14 @@ export default {
     this.ActionGetUsers()
   },
   methods: {
-    ...mapActions('users', ['ActionGetUsers']),
-    submmit () {
-      
-    }
+    ...mapActions('users', ['ActionGetUsers'])
   },
   computed: {
     ...mapState('users', ['users'])
   },
   data: () => ({
     menuVisible: false,
-    userVisible: false,
-    form: {
-      name: '',
-      email: '',
-      senha: ''
-    }
+    userVisible: false
     // users: [
     //   {
     //     email: 'alesson@gmail.com',

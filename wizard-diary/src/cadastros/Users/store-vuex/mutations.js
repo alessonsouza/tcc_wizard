@@ -4,6 +4,6 @@ import * as types from './mutation-types'
 
 export default {
   [types.SET_ADDUSER] (state, payload) {
-    state.addUser = payload
+    state.adduser = payload
   }
 }
