@@ -101,26 +101,23 @@
       <!-- <md-app-content>
         <div> -->
             <div class="page-container">
-              <md-button class="md-fab md-primary md-fab-top-right"  @click="userVisible = !userVisible">
+              <md-button class="md-fab md-primary md-fab-top-right"  @click="alunosVisible = !alunosVisible">
                 <md-icon>add</md-icon>
-                  <AddUser :userVisible.sync="userVisible" />
+                  <AddAlunos :alunosVisible.sync="alunosVisible" />
               </md-button>
-            <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
+            <md-table v-model="alunos.alunos" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
-                <h1 class="md-title">Users</h1>
+                <h1 class="md-title">Alunos</h1>
               </md-table-toolbar>
-
-              <md-table-row>
-                <md-table-head md-numeric>ID</md-table-head>
-                <md-table-head>Name</md-table-head>
-                <md-table-head>Email</md-table-head>
-              </md-table-row>
 
               <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
               <md-table-row slot="md-table-row" slot-scope="{ item }">
                 <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                <md-table-cell md-label="name" md-sort-by="name">{{item.name}}</md-table-cell>
-                <md-table-cell md-label="email" md-sort-by="email">{{item.email}}</md-table-cell>
+                <md-table-cell md-label="Nome" md-sort-by="name">{{item.name}}</md-table-cell>
+                <md-table-cell md-label="Idade" md-sort-by="email">{{item.idade}}</md-table-cell>
+                <md-table-cell md-label="CPF" md-sort-by="email">{{item.cpf}}</md-table-cell>
+                <md-table-cell md-label="Mãe" md-sort-by="email">{{item.mae}}</md-table-cell>
+                <md-table-cell md-label="Pai" md-sort-by="email">{{item.pai}}</md-table-cell>
               </md-table-row>
 
               <!-- <md-table-row>
@@ -172,23 +169,23 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import AddUser from '../../cadastros/Users/AddUser'
+import AddAlunos from '../../cadastros/Alunos/AddAluno'
 export default {
   components: {
-    AddUser
+    AddAlunos
   },
   mounted () {
-    this.ActionGetUsers()
+    this.ActionGetAlunos()
   },
   methods: {
-    ...mapActions('users', ['ActionGetUsers'])
+    ...mapActions('alunos', ['ActionGetAlunos'])
   },
   computed: {
-    ...mapState('users', ['users'])
+    ...mapState('alunos', ['alunos'])
   },
   data: () => ({
     menuVisible: false,
-    userVisible: false
+    alunosVisible: false
     // users: [
     //   {
     //     email: 'alesson@gmail.com',

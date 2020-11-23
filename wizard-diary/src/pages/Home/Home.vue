@@ -27,7 +27,7 @@
           <md-list slot="md-expand">
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
 
-            <md-list-item class="md-inset">Music</md-list-item>
+            <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
             <md-list-item class="md-inset">Movies</md-list-item>
             <md-list-item class="md-inset">TV Shows</md-list-item>
           </md-list>
