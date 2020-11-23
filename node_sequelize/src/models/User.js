@@ -10,7 +10,8 @@ class User extends Model {
             email: DataTypes.STRING,
             isLogged: DataTypes.BOOLEAN
         }, { 
-            sequelize ,
+            sequelize , 
+            tableName: 'users',
             hooks: { // faz a criptografia da senha do usuário
                 beforeCreate: (user) => {
                     const salt = bcrypt.genSaltSync();

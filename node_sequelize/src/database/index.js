@@ -7,6 +7,8 @@ const dbConfig = require('../config/database.js');
 const User = require('../models/User');
 const Address = require('../models/Address');
 const Course = require('../models/Course');
+const Aluno = require('../models/Alunos');
+
 
 
 const  connection = new Sequelize(dbConfig);
@@ -14,6 +16,8 @@ const  connection = new Sequelize(dbConfig);
 User.init(connection);
 Address.init(connection);
 Course.init(connection);
+Aluno.init(connection);
+
 
 
 User.associate(connection.models);

@@ -9,7 +9,8 @@ class Alunos extends Model {
             mae: DataTypes.STRING,
             pai: DataTypes.STRING,
         } , {
-            sequelize
+            sequelize,
+            tableName: 'alunos'
         })
     }
 
