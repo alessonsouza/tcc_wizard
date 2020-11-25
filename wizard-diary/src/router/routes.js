@@ -2,6 +2,7 @@ import { routes as auth } from '../modules/auth'
 import { routes as home } from '../pages/Home'
 import { routes as users } from '../pages/Users'
 import { routes as alunos } from '../pages/Alunos'
+import { routes as contratos } from '../pages/Contratos'
 import { routes as addUser } from '../cadastros/Users'
 import { routes as addAluno } from '../cadastros/Alunos'
 
@@ -10,6 +11,7 @@ export default [
   ...home,
   ...users,
   ...alunos,
+  ...contratos,
   ...addUser,
   ...addAluno,
   {

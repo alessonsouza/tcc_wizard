@@ -14,9 +14,9 @@ class Alunos extends Model {
         })
     }
 
-    // static associate(models) {
-    //     this.belongsTo(models.User, {foreignKey: 'user_id', as: 'user'});
-    // }
+    static associate(models) {
+        this.hasMany(models.Contratos, {foreignKey: 'aluno_id', as: 'contratos'});
+    }
 }
 
 module.exports = Alunos;

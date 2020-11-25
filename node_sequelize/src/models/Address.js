@@ -8,7 +8,8 @@ class Address extends Model {
             district: DataTypes.STRING,
             city: DataTypes.STRING,
         } , {
-            sequelize
+            sequelize,
+            tableName: 'addresses'
         })
     }
 

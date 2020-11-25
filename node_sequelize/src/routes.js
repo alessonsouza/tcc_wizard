@@ -3,6 +3,7 @@ const UserController = require('./controllers/UserController');
 const AddressController = require('./controllers/AddressController');
 const CourseController = require('./controllers/CourseController');
 const AlunoController = require('./controllers/AlunosController');
+const ContratoController = require('./controllers/ContratosController');
 const authMiddleware = require('./middlewares/auth');
 const cors = require('cors');
 
@@ -29,6 +30,13 @@ router.get('/alunos', AlunoController.index);
 router.post('/alunos', AlunoController.store);
 router.put('/alunos/:id', AlunoController.update);
 router.delete('/alunos/:id', AlunoController.delete);
+
+router.get('/contratos', ContratoController.index);
+router.post('/contratos', ContratoController.store);
+router.put('/alunos/:id/contratos', ContratoController.update);
+router.delete('/alunos/:id/contratos', ContratoController.delete);
+
+
 
 router.use(authMiddleware);
 
