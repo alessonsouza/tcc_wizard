@@ -26,7 +26,7 @@
 
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
             <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item class="md-inset">Movies</md-list-item>
+            <md-list-item to="/contratos" class="md-inset">Cadastros</md-list-item>
             <md-list-item class="md-inset">TV Shows</md-list-item>
           </md-list>
         </md-list-item>
@@ -107,7 +107,7 @@
               </md-button>
             <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
-                <h1 class="md-title">Users</h1>
+                <h1 class="md-title">Usuários</h1>
               </md-table-toolbar>
 
               <md-table-row>

@@ -101,9 +101,9 @@
       <!-- <md-app-content>
         <div> -->
             <div class="page-container">
-              <md-button class="md-fab md-primary md-fab-top-right"  @click="userVisible = !userVisible">
+              <md-button class="md-fab md-primary md-fab-top-right"  @click="contratoVisible = !contratoVisible">
                 <md-icon>add</md-icon>
-                  <AddUser :userVisible.sync="userVisible" />
+                  <AddContrato :contratoVisible.sync="contratoVisible" />
               </md-button>
             <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
@@ -175,10 +175,10 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import AddUser from '../../cadastros/Users/AddUser'
+import AddContrato from '../../cadastros/Contratos/AddContrato'
 export default {
   components: {
-    AddUser
+    AddContrato
   },
   mounted () {
     this.ActionGetContratos()
@@ -191,7 +191,7 @@ export default {
   },
   data: () => ({
     menuVisible: false,
-    userVisible: false
+    contratoVisible: false
     // users: [
     //   {
     //     email: 'alesson@gmail.com',

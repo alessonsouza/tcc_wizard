@@ -4,6 +4,7 @@ import { services as alunos } from '@/pages/Alunos'
 import { services as contratos } from '@/pages/Contratos'
 import { services as addUsers } from '@/cadastros/Users'
 import { services as addAlunos } from '@/cadastros/Alunos'
+import { services as addContratos } from '@/cadastros/Contratos'
 
 export default {
   auth,
@@ -11,5 +12,6 @@ export default {
   alunos,
   contratos,
   addUsers,
-  addAlunos
+  addAlunos,
+  addContratos
 }
