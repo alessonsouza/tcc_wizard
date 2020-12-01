@@ -1,5 +1,5 @@
 <template>
- <div class="page-container">
+  <div class="page-container">
     <md-app md-mode="reveal">
       <md-app-toolbar class="md-primary">
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
@@ -103,8 +103,15 @@
             <div class="page-container">
               <md-button class="md-fab md-primary md-fab-top-right"  @click="contratoVisible = !contratoVisible">
                 <md-icon>add</md-icon>
-                  <AddContrato :contratoVisible.sync="contratoVisible" />
               </md-button>
+                 <md-dialog :md-active.sync="contratoVisible" :md-fullScreen="true">
+                  <AddContrato :contratoVisible.sync="contratoVisible" />
+                   <md-dialog-actions>
+                    <md-button @click.prevent="contratoVisible = !contratoVisible">
+                     Fechar
+                    </md-button>
+                   </md-dialog-actions>
+                 </md-dialog>
             <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
                 <h1 class="md-title">Contratos</h1>
@@ -117,31 +124,35 @@
               </md-table-row>
 
               <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-              <md-table-row slot="md-table-row" slot-scope="{ item }">
-                <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
-                <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
-                <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
-                <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
-                <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
-              </md-table-row>
+                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                  <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
+                  <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
+                  <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
+                  <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
+                  <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
+                  <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
+                  <md-button class="md-fab md-primary "  @click="contratoVisible = !contratoVisible">
+                <md-icon>edit</md-icon>
+                  <AddAlunos :contratoVisible.sync="contratoVisible" />
+              </md-button>
+                </md-table-row>
 
-              <!-- <md-table-row>
-                <md-table-cell md-numeric>2</md-table-cell>
-                <md-table-cell>Odette Demageard</md-table-cell>
-                <md-table-cell>odemageard1@spotify.com</md-table-cell>
-                <md-table-cell>Female</md-table-cell>
-                <md-table-cell>Account Coordinator</md-table-cell>
-              </md-table-row>
+                <!-- <md-table-row>
+                  <md-table-cell md-numeric>2</md-table-cell>
+                  <md-table-cell>Odette Demageard</md-table-cell>
+                  <md-table-cell>odemageard1@spotify.com</md-table-cell>
+                  <md-table-cell>Female</md-table-cell>
+                  <md-table-cell>Account Coordinator</md-table-cell>
+                </md-table-row>
 
-              <md-table-row>
-                <md-table-cell md-numeric>3</md-table-cell>
-                <md-table-cell>Vera Taleworth</md-table-cell>
-                <md-table-cell>vtaleworth2@google.ca</md-table-cell>
-                <md-table-cell>Male</md-table-cell>
-                <md-table-cell>Community Outreach Specialist</md-table-cell>
-              </md-table-row> -->
-            </md-table>
+                <md-table-row>
+                  <md-table-cell md-numeric>3</md-table-cell>
+                  <md-table-cell>Vera Taleworth</md-table-cell>
+                  <md-table-cell>vtaleworth2@google.ca</md-table-cell>
+                  <md-table-cell>Male</md-table-cell>
+                  <md-table-cell>Community Outreach Specialist</md-table-cell>
+                </md-table-row> -->
+              </md-table>
           </div>
           <!--
               </md-app-content> -->
@@ -164,13 +175,31 @@
     width: 230px;
     max-width: calc(100vw - 125px);
   }
-  //  .md-dialog {
+   .md-dialog-content {
+  max-width: 300px;
+  }
+
+  // .md-dialog  .md-dialog-container {
   //   max-width: 768px;
   // }
 
-  //  .md-dialog-container {
-  //   max-width: 768px;
-  // }
+//     .md-dialog-container {
+//       width: 100% !important;
+//   height: 100% !important;
+//   max-width: 100% !important;
+//   max-height: 100% !important;
+//   border-radius: 0 !important;
+//   transform: none !important;
+//    }
+
+//    .md-dialog {
+//   width: 100% !important;
+//   height: 100% !important;
+//   max-width: 100% !important;
+//   max-height: 100% !important;
+//   border-radius: 0 !important;
+//   transform: none !important;
+// }
 </style>
 
 <script>

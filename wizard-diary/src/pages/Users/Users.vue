@@ -26,7 +26,7 @@
 
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
             <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Cadastros</md-list-item>
+            <md-list-item to="/contratos" class="md-inset">Contratos</md-list-item>
             <md-list-item class="md-inset">TV Shows</md-list-item>
           </md-list>
         </md-list-item>

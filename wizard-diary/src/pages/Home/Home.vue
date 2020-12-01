@@ -66,6 +66,122 @@
         <div>
 
     <md-table visible="userVisible"  md-card>
+    <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
+              <md-table-toolbar>
+                <h1 class="md-title">Segunda- Feira </h1>
+              </md-table-toolbar>
+
+              <md-table-row>
+                <md-table-head md-numeric>ID</md-table-head>
+                <md-table-head>Professor</md-table-head>
+                <md-table-head>Livro</md-table-head>
+              </md-table-row>
+
+              <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
+                <md-table-row slot="md-table-row" slot-scope="{ item }">
+                  <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
+                  <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
+                  <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
+                  <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
+                  <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
+                  <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
+                </md-table-row>
+
+                <!-- <md-table-row>
+                  <md-table-cell md-numeric>2</md-table-cell>
+                  <md-table-cell>Odette Demageard</md-table-cell>
+                  <md-table-cell>odemageard1@spotify.com</md-table-cell>
+                  <md-table-cell>Female</md-table-cell>
+                  <md-table-cell>Account Coordinator</md-table-cell>
+                </md-table-row>
+
+                <md-table-row>
+                  <md-table-cell md-numeric>3</md-table-cell>
+                  <md-table-cell>Vera Taleworth</md-table-cell>
+                  <md-table-cell>vtaleworth2@google.ca</md-table-cell>
+                  <md-table-cell>Male</md-table-cell>
+                  <md-table-cell>Community Outreach Specialist</md-table-cell>
+                </md-table-row> -->
+              </md-table>
+
+        <!-- <h1 class="md-title">2ª Feira</h1> -->
+<!-- <router-view/> -->
+     <!-- <md-table-row>
+        <md-table-head md-numeric>ID</md-table-head>
+        <md-table-head>{{user.name}}</md-table-head>
+        <md-table-head>Email</md-table-head>
+        <md-table-head>Gender</md-table-head>
+        <md-table-head>Job Title</md-table-head>
+
+            <md-icon>send</md-icon>
+
+      </md-table-row> -->
+
+      <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
+      <!-- <md-table-row slot="md-table-row" slot-scope="{ item }"> -->
+        <!-- <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
+        <md-table-cell md-label="name" md-sort-by="name">{{item.name}}</md-table-cell>
+
+      </md-table-row> -->
+
+       <!-- <md-table-row>
+        <md-table-cell md-numeric>2</md-table-cell>
+        <md-table-cell>Odette Demageard</md-table-cell>
+        <md-table-cell>odemageard1@spotify.com</md-table-cell>
+        <md-table-cell>Female</md-table-cell>
+        <md-table-cell>Account Coordinator</md-table-cell>
+      </md-table-row>
+
+      <md-table-row>
+        <md-table-cell md-numeric>3</md-table-cell>
+        <md-table-cell>Vera Taleworth</md-table-cell>
+        <md-table-cell>vtaleworth2@google.ca</md-table-cell>
+        <md-table-cell>Male</md-table-cell>
+        <md-table-cell>Community Outreach Specialist</md-table-cell>
+      </md-table-row> -->
+
+              </md-table>
+            </div>
+            <div>
+
+    <md-table visible="userVisible"  md-card>
+    <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
+              <md-table-toolbar>
+                <h1 class="md-title">Terça-Feira </h1>
+              </md-table-toolbar>
+
+              <md-table-row>
+                <md-table-head md-numeric>ID</md-table-head>
+                <md-table-head>Professor</md-table-head>
+                <md-table-head>Livro</md-table-head>
+              </md-table-row>
+
+              <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
+                <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'terca'">
+                  <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
+                  <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
+                  <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
+                  <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
+                  <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
+                  <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
+                </md-table-row>
+
+                <!-- <md-table-row>
+                  <md-table-cell md-numeric>2</md-table-cell>
+                  <md-table-cell>Odette Demageard</md-table-cell>
+                  <md-table-cell>odemageard1@spotify.com</md-table-cell>
+                  <md-table-cell>Female</md-table-cell>
+                  <md-table-cell>Account Coordinator</md-table-cell>
+                </md-table-row>
+
+                <md-table-row>
+                  <md-table-cell md-numeric>3</md-table-cell>
+                  <md-table-cell>Vera Taleworth</md-table-cell>
+                  <md-table-cell>vtaleworth2@google.ca</md-table-cell>
+                  <md-table-cell>Male</md-table-cell>
+                  <md-table-cell>Community Outreach Specialist</md-table-cell>
+                </md-table-row> -->
+              </md-table>
 
         <!-- <h1 class="md-title">2ª Feira</h1> -->
 <!-- <router-view/> -->
@@ -154,12 +270,19 @@
 </style>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 // import Users from '../Users/Users'
 export default {
   name: 'Home',
+  mounted () {
+    this.ActionGetContratos()
+  },
+  methods: {
+    ...mapActions('contratos', ['ActionGetContratos'])
+  },
   computed: {
-    ...mapState('auth', ['user'])
+    ...mapState('auth', ['user']),
+    ...mapState('contratos', ['contratos'])
   },
   data: () => ({
     menuVisible: false,

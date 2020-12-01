@@ -118,6 +118,10 @@
                 <md-table-cell md-label="CPF" md-sort-by="email">{{item.cpf}}</md-table-cell>
                 <md-table-cell md-label="Mãe" md-sort-by="email">{{item.mae}}</md-table-cell>
                 <md-table-cell md-label="Pai" md-sort-by="email">{{item.pai}}</md-table-cell>
+                 <md-button class="md-fab md-primary "  @click="alunosVisible = !alunosVisible">
+                <md-icon>edit</md-icon>
+                  <AddAlunos :alunosVisible.sync="alunosVisible" />
+              </md-button>
               </md-table-row>
 
               <!-- <md-table-row>

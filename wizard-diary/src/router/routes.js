@@ -5,6 +5,7 @@ import { routes as alunos } from '../pages/Alunos'
 import { routes as contratos } from '../pages/Contratos'
 import { routes as addUser } from '../cadastros/Users'
 import { routes as addAluno } from '../cadastros/Alunos'
+import { routes as addContrato } from '../cadastros/Contratos'
 
 export default [
   ...auth,
@@ -14,6 +15,7 @@ export default [
   ...contratos,
   ...addUser,
   ...addAluno,
+  ...addContrato,
   {
     path: '/about',
     name: 'About',
