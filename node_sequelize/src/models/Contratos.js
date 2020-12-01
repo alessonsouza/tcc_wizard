@@ -10,8 +10,7 @@ class Contratos extends Model {
             professor: DataTypes.STRING,
             horario: DataTypes.STRING,
             dia_semana: DataTypes.STRING,
-            livro: DataTypes.STRING,
-            horario: DataTypes.STRING,
+            livro: DataTypes.STRING
         }, { 
             sequelize , 
             tableName: 'contratos',

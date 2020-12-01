@@ -10,8 +10,6 @@ const Course = require('../models/Course');
 const Aluno = require('../models/Alunos');
 const Contratos = require('../models/Contratos');
 
-
-
 const  connection = new Sequelize(dbConfig);
 
 User.init(connection);
@@ -20,19 +18,10 @@ Course.init(connection);
 Aluno.init(connection);
 Contratos.init(connection);
 
-
-
 User.associate(connection.models);
 Address.associate(connection.models);
 Course.associate(connection.models);
 Contratos.associate(connection.models);
 
-// try {
-//     connection.authenticate();
-//     console.log('Connection has been established successfully.');
-// } catch (error) {
-//     console.error('Unable to connect to the database: ' , error);
-// }
-//  User.create({name: 'Jose', email: 'josen@d2wdigital.com.br', password: '1234'});
 module.exports = connection;
 
