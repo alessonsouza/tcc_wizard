@@ -5,6 +5,10 @@ import store from './store'
 
 import './assets/scss/app.scss'
 
+// make jw pagination component available in application
+import JwPagination from 'jw-vue-pagination'
+Vue.component('jw-pagination', JwPagination)
+
 Vue.config.productionTip = false
 
 new Vue({

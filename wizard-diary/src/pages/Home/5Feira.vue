@@ -1,43 +1,8 @@
 <template>
-<div >
-  <div class="page-container">
-    <md-app md-mode="reveal">
-      <md-app-toolbar class="md-primary">
-        <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <span class="md-title">Agenda Interactive</span>
-      </md-app-toolbar>
-
-      <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Menu Principal</md-toolbar>
-      <md-list>
-         <md-list-item to="/">
-            <md-icon>home
-              </md-icon>
-            <span class="md-list-item-text">Home</span>
-          </md-list-item>
-      </md-list>
-        <md-list md-expand>
-
-          <md-list-item md-expand>
-          <md-icon>home</md-icon>
-          <span class="md-list-item-text">Cadastros</span>
-
-          <md-list slot="md-expand">
-            <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
-
-            <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Agendamentos</md-list-item>
-          </md-list>
-        </md-list-item>
-         </md-list>
-
-      </md-app-drawer>
-
-      <md-app-content>
-        <md-tabs class="md-transparent" md-alignment="fixed">
-          <md-tab id="tab-segunda" md-label="2ª Feira">
+  <div >
+    <div class="page-container">
+      <md-app md-mode="reveal">
+        <md-app-content>
             <div>
               <md-table visible="userVisible"  md-card>
                <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
@@ -52,7 +17,7 @@
                 </md-table-row>
 
                 <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row slot="md-table-row" slot-scope="{ item }" v-if="(item.dia_semana == 'segunda') && item.professor == 'Tanurio' && item.horario === '08:00-10:00'">
+                  <md-table-row slot="md-table-row" slot-scope="{ item }" v-if="(item.dia_semana == 'quinta') && item.professor == 'Tanurio' && item.horario === '08:00-10:00'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
@@ -77,7 +42,7 @@
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
                   <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'carla' && item.horario === '08:00-10:00'">
+                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'carla' && item.horario === '08:00-10:00'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
@@ -102,7 +67,7 @@
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
                   <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'rafaela' && item.horario === '08:00-10:00'">
+                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'rafaela' && item.horario === '08:00-10:00'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
@@ -127,7 +92,7 @@
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
                   <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'julia' && item.horario === '08:00-10:00'">
+                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'julia' && item.horario === '08:00-10:00'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
@@ -139,26 +104,9 @@
               </md-table>
               <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
             </div>
-              </md-tab>
-              <md-tab id="terca" md-label="3ª Feira">
-                <TercaFeira/>
-              </md-tab>
-               <md-tab id="quarta" md-label="4ª Feira">
-                <QuartaFeira />
-                </md-tab>
-                <md-tab id="quinta" md-label="5ª Feira">
-                <QuintaFeira />
-                </md-tab>
-                <md-tab id="sexta" md-label="6ª Feira">
-                <SextaFeira />
-                </md-tab>
-                <md-tab id="sabado" md-label="Sábado">
-                <Sabado />
-                </md-tab>
-              </md-tabs>
-          </md-app-content>
-        </md-app>
-      </div>
+        </md-app-content>
+      </md-app>
+    </div>
   </div>
 </template>
 
@@ -208,23 +156,9 @@
 import { mapState, mapActions, mapGetters } from 'vuex'
 // import store from '../../store'
 // import Users from '../Users/Users'
-// import AddContrato from '../../cadastros/Contratos/AddContrato'
-// import AddContrato from '../../cadastros/Contratos/AddContrato.vue'
-import TercaFeira from './3Feira.vue'
-import QuartaFeira from './4Feira.vue'
-import QuintaFeira from './5Feira.vue'
-import SextaFeira from './6Feira.vue'
-import Sabado from './Sabado.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    TercaFeira,
-    QuartaFeira,
-    QuintaFeira,
-    SextaFeira,
-    Sabado
-  },
+  name: '2feira',
   mounted () {
     this.ActionGetContratos()
     this.teste = this.contratosGetter

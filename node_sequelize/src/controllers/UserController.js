@@ -110,6 +110,9 @@ module.exports = {
         const { name, password, email} = req.body;
         const { user_id} = req.params;
 
+        const salt = bcrypt.genSaltSync();
+        password = bcrypt.hashSync(password, salt);
+
         await User.update({
             name, password, email
         }, {

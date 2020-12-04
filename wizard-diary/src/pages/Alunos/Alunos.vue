@@ -26,8 +26,7 @@
 
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
             <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Contratos</md-list-item>
-            <md-list-item class="md-inset">TV Shows</md-list-item>
+            <md-list-item to="/contratos" class="md-inset">Agendamentos</md-list-item>
           </md-list>
         </md-list-item>
       </md-list>
@@ -103,7 +102,6 @@
             <div class="page-container">
               <md-button class="md-fab md-primary md-fab-top-right"  @click="alunosVisible = !alunosVisible">
                 <md-icon>add</md-icon>
-                  <AddAlunos :alunosVisible.sync="alunosVisible" />
               </md-button>
             <md-table v-model="alunos.alunos" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
@@ -118,10 +116,20 @@
                 <md-table-cell md-label="CPF" md-sort-by="email">{{item.cpf}}</md-table-cell>
                 <md-table-cell md-label="Mãe" md-sort-by="email">{{item.mae}}</md-table-cell>
                 <md-table-cell md-label="Pai" md-sort-by="email">{{item.pai}}</md-table-cell>
-                 <md-button class="md-fab md-primary "  @click="alunosVisible = !alunosVisible">
-                <md-icon>edit</md-icon>
-                  <AddAlunos :alunosVisible.sync="alunosVisible" />
-              </md-button>
+                  <md-button class="md-fab md-primary "  @click="update(item, 'update')">
+                    <md-icon>edit</md-icon>
+                  </md-button>
+                  <md-button class="md-fab md-secondary md-right" @click="deleteVisible = !deleteVisible">
+                    <md-icon>delete</md-icon>
+                  </md-button>
+                  <md-dialog-confirm
+                    :md-active.sync="deleteVisible"
+                    md-title="Tem certeza que deseja excluir este agendamento ?"
+                    md-content=""
+                    md-confirm-text="Sim"
+                    md-cancel-text="Não"
+                    @md-cancel="onCancel"
+                    @click="deletar(item.id)"/>
               </md-table-row>
 
               <!-- <md-table-row>
@@ -140,6 +148,9 @@
                 <md-table-cell>Community Outreach Specialist</md-table-cell>
               </md-table-row> -->
             </md-table>
+            <md-dialog :md-active.sync="alunosVisible" min-width="800px">
+              <AddAlunos :typeAction.sync="action" :localform.sync="items" :alunoVisible.sync="alunosVisible" to="/cadastros-alunos"/>
+            </md-dialog>
           </div>
           <!--
               </md-app-content> -->
@@ -182,34 +193,33 @@ export default {
     this.ActionGetAlunos()
   },
   methods: {
-    ...mapActions('alunos', ['ActionGetAlunos'])
+    ...mapActions('alunos', ['ActionGetAlunos']),
+    ...mapActions('addAlunos', ['ActionDeleteAlunos']),
+    update (data, action) {
+      this.items = data
+      this.alunosVisible = true
+      this.updated = false
+      this.action = action
+    },
+    async deletar (id) {
+      await this.ActionDeleteAlunos(id)
+      this.deleteVisible = false
+      this.updated = true
+    },
+    onCancel () {
+      this.deleteVisible = false
+    }
   },
   computed: {
     ...mapState('alunos', ['alunos'])
   },
   data: () => ({
     menuVisible: false,
-    alunosVisible: false
-    // users: [
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   },
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   },
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   }
-    // ]
+    alunosVisible: false,
+    deleteVisible: false,
+    updated: true,
+    action: '',
+    items: {}
   })
 }
 </script>

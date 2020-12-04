@@ -28,13 +28,14 @@ router.get('/users/load-session', UserController.loadSession);
 
 router.get('/alunos', AlunoController.index);
 router.post('/alunos', AlunoController.store);
-router.put('/alunos/:id', AlunoController.update);
-router.delete('/alunos/:id', AlunoController.delete);
+router.put('/alunos/:aluno_id', AlunoController.update);
+router.delete('/alunos/:aluno_id', AlunoController.delete);
 
 router.get('/contratos', ContratoController.index);
+router.get('/contratos/getById/:id', ContratoController.getById);
 router.post('/contratos', ContratoController.store);
-router.put('/alunos/:id/contratos', ContratoController.update);
-router.delete('/alunos/:id/contratos', ContratoController.delete);
+router.put('/contratos/:id_con', ContratoController.update);
+router.delete('/contratos/:id', ContratoController.delete);
 
 
 

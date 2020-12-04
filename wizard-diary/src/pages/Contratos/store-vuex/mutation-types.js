@@ -1,1 +1,2 @@
 export const SET_CONTRATOS = 'AUTH/SET_CONTRATOS'
+export const SET_CONTRATO = 'AUTH/SET_CONTRATO'

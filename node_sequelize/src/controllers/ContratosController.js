@@ -27,6 +27,14 @@ module.exports = {
         }
         return res.status(200).send({ contratos });
     },
+    async getById(req, res) {
+        //busca tudo que tem na tabela
+        let contratos = await Contratos.findByPk(req.params.id);
+        if (contratos == "" || contratos == null) {
+            return res.status(200).send({ message: "Nenhum usuario encontrado!" });
+        }
+        return res.status(200).send({ contratos });
+    },
     async store(req, res) {
         const {
             aluno_id,
@@ -65,9 +73,15 @@ module.exports = {
             professor,
             horario,
             dia_semana,
-            livro
+            livro,
+            createdAt,
+            updatedAt
         } = req.body;
-        const { id } = req.params;
+        console.log(req.body);
+        const { id_con } = req.params;
+
+        console.log('IDDDDDDDDDDDDdd = ', id_con);
+
 
         await Contratos.update({
             aluno_id,
@@ -78,13 +92,13 @@ module.exports = {
             livro
         }, {
             where: {
-                id: id
+                id: id_con
             }
         });
 
         return res.status(200).send({
             status: 1,
-            message: 'Usuário atualizado com sucesso!',
+            message: 'Contrato atualizado com sucesso!',
         })
 
 

@@ -26,8 +26,7 @@
 
             <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
             <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Contratos</md-list-item>
-            <md-list-item class="md-inset">TV Shows</md-list-item>
+            <md-list-item to="/contratos" class="md-inset">Agendamento</md-list-item>
           </md-list>
         </md-list-item>
       </md-list>
@@ -103,7 +102,6 @@
             <div class="page-container">
               <md-button class="md-fab md-primary md-fab-top-right"  @click="userVisible = !userVisible">
                 <md-icon>add</md-icon>
-                  <AddUser :userVisible.sync="userVisible" />
               </md-button>
             <md-table v-model="users.users" md-sort="name" md-sort-order="asc" md-card>
               <md-table-toolbar>
@@ -121,8 +119,20 @@
                 <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                 <md-table-cell md-label="name" md-sort-by="name">{{item.name}}</md-table-cell>
                 <md-table-cell md-label="email" md-sort-by="email">{{item.email}}</md-table-cell>
+                <md-button class="md-fab md-primary "  @click="update(item, 'update')">
+                    <md-icon>edit</md-icon>
+                </md-button>
+                <md-button class="md-fab md-secondary md-right" @click="deleteVisible = !deleteVisible">
+                    <md-icon>delete</md-icon>
+                </md-button>
+                  <md-dialog-confirm
+                   :md-active.sync="deleteVisible"
+                   md-title="Tem certeza que deseja excluir este usuário ?"
+                   md-confirm-text="Sim"
+                   md-cancel-text="Não"
+                   @md-cancel="onCancel"
+                   @click="deletar(item.id)"/>
               </md-table-row>
-
               <!-- <md-table-row>
                 <md-table-cell md-numeric>2</md-table-cell>
                 <md-table-cell>Odette Demageard</md-table-cell>
@@ -139,6 +149,9 @@
                 <md-table-cell>Community Outreach Specialist</md-table-cell>
               </md-table-row> -->
             </md-table>
+            <md-dialog :md-active.sync="userVisible">
+               <AddUser :typeAction.sync="action" :localform.sync="items" :userVisible.sync="userVisible" to="/cadastros-users"/>
+              </md-dialog>
           </div>
           <!--
               </md-app-content> -->
@@ -174,6 +187,7 @@
 import { mapActions, mapState } from 'vuex'
 import AddUser from '../../cadastros/Users/AddUser'
 export default {
+  name: 'Users',
   components: {
     AddUser
   },
@@ -181,14 +195,32 @@ export default {
     this.ActionGetUsers()
   },
   methods: {
-    ...mapActions('users', ['ActionGetUsers'])
+    ...mapActions('users', ['ActionGetUsers']),
+    ...mapActions('addUser', ['ActionDeleteUsers']),
+    update (data, action) {
+      this.items = data
+      this.userVisible = true
+      this.updated = false
+      this.action = action
+    },
+    async deletar (id) {
+      await this.ActionDeleteUsers(id)
+      this.deleteVisible = false
+    },
+    onCancel () {
+      this.deleteVisible = false
+    }
   },
   computed: {
     ...mapState('users', ['users'])
   },
   data: () => ({
     menuVisible: false,
-    userVisible: false
+    userVisible: false,
+    deleteVisible: false,
+    updated: true,
+    action: '',
+    items: {}
     // users: [
     //   {
     //     email: 'alesson@gmail.com',

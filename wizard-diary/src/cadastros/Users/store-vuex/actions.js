@@ -8,3 +8,11 @@ import services from '@/http'
 export const ActionInsertUsers = (context, form) => {
   return services.addUsers.addUser(form)
 }
+export const ActionUpdateUsers = (context, form) => {
+  console.log('UPDATE', form)
+  return services.addUsers.updateUser({ user_id: form.id }, form)
+}
+export const ActionDeleteUsers = (context, form) => {
+  console.log('DELETER', form)
+  return services.addUsers.deleteUser({ user_id: form })
+}

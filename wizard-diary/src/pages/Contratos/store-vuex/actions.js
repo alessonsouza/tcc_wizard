@@ -11,3 +11,12 @@ export const ActionGetContratos = ({ commit }) => {
     commit(types.SET_CONTRATOS, res.data)
   })
 }
+export const ActionGetContratosById = ({ commit }, payload) => {
+  return services.contratos.contratosByID({ id: payload }).then(res => {
+    console.log('SETANDO SET_CONTRATO' + res.data.contratos)
+    commit(types.SET_CONTRATO, res.data)
+  })
+}
+export const ActionSetContratos = ({ commit }, payload) => {
+  return commit(types.SET_CONTRATOS, payload)
+}

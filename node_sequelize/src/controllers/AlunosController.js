@@ -39,7 +39,7 @@ module.exports = {
     },
     async update(req, res) {
 
-        const { name,  idade, cpf, mae, pail} = req.body;
+        const { name,  idade, cpf, mae, pai} = req.body;
         const { aluno_id } = req.params;
 
         await Alunos.update({

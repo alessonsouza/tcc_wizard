@@ -1,3 +1,4 @@
 export default {
-  contratos: []
+  contratos: {},
+  contrato: {}
 }

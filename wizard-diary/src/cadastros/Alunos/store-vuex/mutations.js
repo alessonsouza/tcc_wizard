@@ -3,7 +3,7 @@
 import * as types from './mutation-types'
 
 export default {
-  [types.SET_ADDAluno] (state, payload) {
+  [types.SET_ADDALUNO] (state, payload) {
     state.addaluno = payload
   }
 }
