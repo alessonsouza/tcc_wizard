@@ -7,7 +7,7 @@
               <md-table visible="userVisible"  md-card>
                <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
                 <md-table-toolbar>
-                  <h1 class="md-title">Tanurio (Sala 1) </h1>
+                  <h1 class="md-title">Julia (Sala 1) </h1>
                 </md-table-toolbar>
 
                 <md-table-row>
@@ -17,7 +17,7 @@
                 </md-table-row>
 
                 <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row slot="md-table-row" slot-scope="{ item }" v-if="(item.dia_semana == 'quinta') && item.professor == 'Tanurio' && item.horario === '08:00-10:00'">
+                  <md-table-row slot="md-table-row" slot-scope="{ item }" v-if="(item.dia_semana == 'quinta') && item.professor == 'Julia' && item.horario === '15:30-17:30'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
@@ -25,6 +25,7 @@
                     <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
                     <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
                     <md-table-cell md-label="Professor" md-sort-by="professor">{{item.professor}}</md-table-cell>
+                    <md-table-cell md-label="Observações" md-sort-by="observacoes">{{item.observacoes}}</md-table-cell>
                   </md-table-row>
                 </md-table>
               </md-table>
@@ -42,13 +43,14 @@
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
                   <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'carla' && item.horario === '08:00-10:00'">
+                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'Carla' && item.horario === '18:30-19:30'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
                     <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
                     <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
                     <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
+                    <md-table-cell md-label="Observações" md-sort-by="observacoes">{{item.observacoes}}</md-table-cell>
                   </md-table-row>
                 </md-table>
               </md-table>
@@ -67,19 +69,20 @@
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
                   <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'rafaela' && item.horario === '08:00-10:00'">
+                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'Rafaela' && item.horario === '19:30-21:30'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
                     <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
                     <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
                     <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
                     <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
+                    <md-table-cell md-label="Observações" md-sort-by="observacoes">{{item.observacoes}}</md-table-cell>
                   </md-table-row>
                 </md-table>
               </md-table>
               <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
             </div>
-            <div style="marginTop: 10px">
+            <!-- <div style="marginTop: 10px">
               <md-table visible="userVisible"  md-card>
                 <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
                   <md-table-toolbar>
@@ -91,7 +94,7 @@
                     <md-table-head>Professor</md-table-head>
                     <md-table-head>Livro</md-table-head>
                   </md-table-row>
-                  <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
+
                   <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'quinta' && item.professor == 'julia' && item.horario === '08:00-10:00'">
                     <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
                     <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
@@ -102,8 +105,8 @@
                   </md-table-row>
                 </md-table>
               </md-table>
-              <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
-            </div>
+
+            </div> -->
         </md-app-content>
       </md-app>
     </div>

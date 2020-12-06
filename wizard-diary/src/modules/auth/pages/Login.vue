@@ -7,22 +7,22 @@
             </div>
             <div class="card-body">
                 <div class="form-group">
-                    <input
-                        required
-                        type="email"
-                        v-model="form.email"
-                        class="form-control"
-                        placeholder="E-mail"
-                    >
+                    <md-field required="true">
+                      <md-icon>person
+                     </md-icon>
+                    <label>Email</label>
+                    <md-input v-model="form.email" required></md-input>
+                    <span class="md-helper-text"></span>
+                   </md-field>
                     </div>
                     <div class="form-group">
-                    <input
-                        required
-                        type="password"
-                        v-model="form.password"
-                        class="form-control"
-                        placeholder="Senha"
-                    >
+                    <md-field >
+                      <md-icon>lock
+                    </md-icon>
+                    <label>Senha</label>
+                    <md-input v-model="form.password" type="password" required></md-input>
+                    <span class="md-helper-text"></span>
+                  </md-field>
                     </div>
 
                     <button class="btn btn-primary w-100">
@@ -39,6 +39,7 @@
 import { mapActions } from 'vuex'
 
 export default {
+  name: 'login',
   data: () => ({
     form: {
       email: '',
@@ -76,6 +77,11 @@ export default {
     .card{
         width: 30%;
     }
+    background: rgb(52, 52, 192) ;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: linear-gradient(to bottom, white, rgb(8, 60, 109));
 }
 
 </style>

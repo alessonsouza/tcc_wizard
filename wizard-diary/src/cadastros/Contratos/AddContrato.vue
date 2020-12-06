@@ -63,6 +63,11 @@
                 </md-field>
                 </div>
               </div>
+              <md-field>
+                <label>Observações</label>
+                <md-input v-model="form.observacoes"></md-input>
+                <span class="md-helper-text"></span>
+              </md-field>
                 </md-card-content>
                 <md-card-actions>
                   <md-button v-on:click="submit()">
@@ -146,7 +151,8 @@ export default {
         horario: null,
         dia_semana: null,
         livro: null,
-        aluno_id: null
+        aluno_id: null,
+        observacoes: ''
       },
       menuVisible: false,
       diasSemanais: [
@@ -164,19 +170,33 @@ export default {
         { id: 'frances', name: 'Francês' }
       ],
       livros: [
-        { id: 'w2', name: 'W2' },
-        { id: 'w4', name: 'W4' },
-        { id: 'w6', name: 'W6' },
-        { id: 'w8', name: 'W8' },
-        { id: 'w10', name: 'W10' },
-        { id: 'w12', name: 'W12' }
+        { id: 'W2', name: 'W2' },
+        { id: 'W2B', name: 'W2B' },
+        { id: 'W4', name: 'W4' },
+        { id: 'W4B', name: 'W4B' },
+        { id: 'W6', name: 'W6' },
+        { id: 'W8', name: 'W8' },
+        { id: 'W10', name: 'W10' },
+        { id: 'W12', name: 'W12' },
+        { id: 'W12B', name: 'W12B' },
+        { id: 'K2', name: 'K2' },
+        { id: 'K2B', name: 'K2B' },
+        { id: 'K4B', name: 'K4B' },
+        { id: 'K6', name: 'K6' },
+        { id: 'T2', name: 'T2' },
+        { id: 'T4', name: 'T4' },
+        { id: 'T4B', name: 'T4B' },
+        { id: 'T6', name: 'T6' },
+        { id: 'T8', name: 'T8' },
+        { id: 'T8', name: 'T8B' }
       ],
       professores: [
         { id: '1', name: 'Tanurio' },
         { id: '2', name: 'Rafaela' },
         { id: '3', name: 'Bruna' },
         { id: '4', name: 'Carla' },
-        { id: '5', name: 'Alesson' }
+        { id: '5', name: 'Alesson' },
+        { id: '6', name: 'Julia' }
       ],
       horarios: [
         { id: '08:00-10:00', name: '08:00-10:00' },
@@ -200,11 +220,18 @@ export default {
         await this.ActionUpdateContratos(this.form)
         this.ActionGetAlunos()
         this.ActionGetContratos()
-        this.contratoVisible = false
+        this.$parent.contratoVisible = false
       } else {
         await this.ActionInsertContratos(this.form)
         this.ActionGetAlunos()
+        this.cleanFields()
         this.ActionGetContratos()
+      }
+    },
+    cleanFields () {
+      let field
+      for (field in this.form) {
+        this.form[field] = ''
       }
     }
   },

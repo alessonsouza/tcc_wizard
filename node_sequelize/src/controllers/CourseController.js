@@ -1,9 +1,10 @@
 const User = require('../models/User');
 const Course = require('../models/Course');
+const { pesquisar, salvar, deletar } = require('./UserController');
 
 
 module.exports = {
-    async index(req, res) {
+    async pesquisar(req, res) {
         const { user_id} = req.params;
 
         const user  = await User.findByPk(user_id, { 
@@ -19,7 +20,7 @@ module.exports = {
 
         return res.status(200).send(user.courses);
     },
-    async store(req, res) {
+    async salvar(req, res) {
 
 
         const { user_id } = req.params; // pega o ID como parameto
@@ -50,7 +51,7 @@ module.exports = {
         
     },
 
-    async delete(req, res) {
+    async deletar(req, res) {
 
         const { user_id } = req.params; // pega o ID como parameto
         const { name } = req.body; // pegamos o "name" da requisição POST

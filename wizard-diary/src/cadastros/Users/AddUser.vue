@@ -119,14 +119,24 @@ export default {
   },
   methods: {
     ...mapActions('addUser', ['ActionInsertUsers', 'ActionUpdateUsers']),
+    ...mapActions('users', ['ActionGetUsers']),
     async submit () {
       console.log(this.localform)
 
       if (this.typeAction === 'update') {
         await this.ActionUpdateUsers(this.form)
+        this.ActionGetUsers()
         this.userVisible = false
       } else {
         await this.ActionInsertUsers(this.form)
+        this.cleanFields()
+        this.ActionGetUsers()
+      }
+    },
+    cleanFields () {
+      let field
+      for (field in this.form) {
+        this.form[field] = ''
       }
     }
   },

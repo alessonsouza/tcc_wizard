@@ -8,7 +8,6 @@
         </md-button>
         <span class="md-title">Agenda Interactive</span>
       </md-app-toolbar>
-
       <md-app-drawer :md-active.sync="menuVisible">
         <md-toolbar class="md-transparent" md-elevation="0">Menu Principal</md-toolbar>
       <md-list>
@@ -19,126 +18,42 @@
           </md-list-item>
       </md-list>
         <md-list md-expand>
-
           <md-list-item md-expand>
-          <md-icon>home</md-icon>
+          <md-icon>list</md-icon>
           <span class="md-list-item-text">Cadastros</span>
-
-          <md-list slot="md-expand">
-            <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
-
-            <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Agendamentos</md-list-item>
-          </md-list>
-        </md-list-item>
+            <md-list slot="md-expand">
+              <md-list-item to="/users" class="md-inset">
+              <md-icon>people
+                </md-icon>
+              <span class="md-list-item-text">Usuários</span>
+              </md-list-item>
+              <md-list-item to="/alunos" class="md-inset">
+              <md-icon>people
+                </md-icon>
+              <span class="md-list-item-text">Alunos</span>
+              </md-list-item>
+              <md-list-item to="/contratos" class="md-inset">
+              <md-icon>book
+                </md-icon>
+              <span class="md-list-item-text">Agendamentos</span>
+              </md-list-item>
+            </md-list>
+          </md-list-item>
          </md-list>
+        <md-list>
+         <md-list-item v-on:click="logout()" to="/login">
+            <md-icon>input
+              </md-icon>
+            <span class="md-list-item-text">Sair</span>
+          </md-list-item>
+        </md-list>
 
       </md-app-drawer>
 
       <md-app-content>
         <md-tabs class="md-transparent" md-alignment="fixed">
-          <md-tab id="tab-segunda" md-label="2ª Feira">
-            <div>
-              <md-table visible="userVisible"  md-card>
-               <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
-                <md-table-toolbar>
-                  <h1 class="md-title">Tanurio (Sala 1) </h1>
-                </md-table-toolbar>
-
-                <md-table-row>
-                  <md-table-head md-numeric>ID</md-table-head>
-                  <md-table-head>Professor</md-table-head>
-                  <md-table-head>Livro</md-table-head>
-                </md-table-row>
-
-                <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row slot="md-table-row" slot-scope="{ item }" v-if="(item.dia_semana == 'segunda') && item.professor == 'Tanurio' && item.horario === '08:00-10:00'">
-                    <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                    <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
-                    <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
-                    <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
-                    <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
-                    <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
-                    <md-table-cell md-label="Professor" md-sort-by="professor">{{item.professor}}</md-table-cell>
-                  </md-table-row>
-                </md-table>
-              </md-table>
-            </div>
-            <div style="marginTop: 10px">
-              <md-table visible="userVisible"  md-card>
-                <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
-                  <md-table-toolbar>
-                    <h1 class="md-title">Carla (Sala 1) </h1>
-                  </md-table-toolbar>
-
-                  <md-table-row>
-                    <md-table-head md-numeric>ID</md-table-head>
-                    <md-table-head>Professor</md-table-head>
-                    <md-table-head>Livro</md-table-head>
-                  </md-table-row>
-                  <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'carla' && item.horario === '08:00-10:00'">
-                    <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                    <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
-                    <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
-                    <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
-                    <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
-                    <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
-                  </md-table-row>
-                </md-table>
-              </md-table>
-              <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
-            </div>
-            <div style="marginTop: 10px">
-              <md-table visible="userVisible"  md-card>
-                <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
-                  <md-table-toolbar>
-                    <h1 class="md-title">Rafaela (Sala 1) </h1>
-                  </md-table-toolbar>
-
-                  <md-table-row>
-                    <md-table-head md-numeric>ID</md-table-head>
-                    <md-table-head>Professor</md-table-head>
-                    <md-table-head>Livro</md-table-head>
-                  </md-table-row>
-                  <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'rafaela' && item.horario === '08:00-10:00'">
-                    <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                    <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
-                    <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
-                    <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
-                    <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
-                    <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
-                  </md-table-row>
-                </md-table>
-              </md-table>
-              <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
-            </div>
-            <div style="marginTop: 10px">
-              <md-table visible="userVisible"  md-card>
-                <md-table v-model="contratos.contratos" md-sort="name" md-sort-order="asc" md-card>
-                  <md-table-toolbar>
-                    <h1 class="md-title">Julia (Sala 1) </h1>
-                  </md-table-toolbar>
-
-                  <md-table-row>
-                    <md-table-head md-numeric>ID</md-table-head>
-                    <md-table-head>Professor</md-table-head>
-                    <md-table-head>Livro</md-table-head>
-                  </md-table-row>
-                  <!-- <md-table-row v-for="item in users.users" :key="item.id"> -->
-                  <md-table-row  slot="md-table-row" slot-scope="{ item }" v-if="item.dia_semana == 'segunda' && item.professor == 'julia' && item.horario === '08:00-10:00'">
-                    <md-table-cell  md-label="id" md-sort-by="id" md-numeric>{{item.id}}</md-table-cell>
-                    <md-table-cell md-label="Aluno" md-sort-by="name">{{item.alunos.name}}</md-table-cell>
-                    <md-table-cell md-label="Curso" md-sort-by="curso">{{item.curso}}</md-table-cell>
-                    <md-table-cell md-label="Livro" md-sort-by="livro">{{item.livro}}</md-table-cell>
-                    <md-table-cell md-label="Dia da Semana" md-sort-by="dia">{{item.dia_semana}}</md-table-cell>
-                    <md-table-cell md-label="Horário" md-sort-by="dia">{{item.horario}}</md-table-cell>
-                  </md-table-row>
-                </md-table>
-              </md-table>
-              <!-- <jw-pagination :pageSize="2" :items="exampleItems" @changePage="onChangePage"></jw-pagination> -->
-            </div>
+              <md-tab id="segunda" md-label="2ª Feira">
+                <SegundaFeira/>
               </md-tab>
               <md-tab id="terca" md-label="3ª Feira">
                 <TercaFeira/>
@@ -170,8 +85,17 @@
 
    // Demo purposes only
   .md-drawer {
-    width: 830px;
+    width: 530px;
     max-width: calc(100vw - 125px);
+
+  }
+
+  // .md-toolbar.md-theme-default.md-primary {
+  //   background-color: rgb(52, 49, 225);
+  // }
+
+  .md-app-content {
+    background-image: linear-gradient(to bottom, white, rgb(8, 60, 109));
   }
 
     $list-width: 320px;
@@ -210,6 +134,7 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 // import Users from '../Users/Users'
 // import AddContrato from '../../cadastros/Contratos/AddContrato'
 // import AddContrato from '../../cadastros/Contratos/AddContrato.vue'
+import SegundaFeira from './2Feira.vue'
 import TercaFeira from './3Feira.vue'
 import QuartaFeira from './4Feira.vue'
 import QuintaFeira from './5Feira.vue'
@@ -217,8 +142,9 @@ import SextaFeira from './6Feira.vue'
 import Sabado from './Sabado.vue'
 
 export default {
-  name: 'Home',
+  name: 'home',
   components: {
+    SegundaFeira,
     TercaFeira,
     QuartaFeira,
     QuintaFeira,
@@ -231,11 +157,15 @@ export default {
   },
   methods: {
     ...mapActions('contratos', ['ActionGetContratos', 'ActionSetContratos']),
+    ...mapActions('auth', ['ActionSignOut']),
     onChangePage (pageOfItems) {
       console.log(pageOfItems)
       // update page of items
       this.pageOfItems = pageOfItems
       // this.ActionSetContratos(pageOfItems)
+    },
+    logout () {
+      this.ActionSignOut()
     }
   },
   computed: {

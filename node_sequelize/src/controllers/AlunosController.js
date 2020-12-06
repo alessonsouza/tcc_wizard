@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
+const { pesquisar } = require('./UserController.js');
 
 
 function generateToken(params = {}) {
@@ -13,7 +14,7 @@ function generateToken(params = {}) {
 
 
 module.exports = {    
-    async index(req, res) {
+    async pesquisar(req, res) {
         //busca tudo que tem na tabela
         let alunos = await Alunos.findAll();
 
@@ -22,12 +23,11 @@ module.exports = {
         }
         return res.status(200).send({ alunos });
     },
-    async store(req, res) {
+    async salvar(req, res) {
         
         const { name, idade, cpf, mae, pai} = req.body; //pego os dados
 
         const aluno = await Alunos.create({ name, idade, cpf, mae, pai}); // crio o usuário
-        console.log(aluno)
         const token = generateToken({aluno});
 
         return res.status(200).send({ // retorno o resultado do POST
@@ -37,7 +37,7 @@ module.exports = {
         })
 
     },
-    async update(req, res) {
+    async atualizar(req, res) {
 
         const { name,  idade, cpf, mae, pai} = req.body;
         const { aluno_id } = req.params;
@@ -57,8 +57,8 @@ module.exports = {
 
 
     },
-    async delete(req, res) {
-        const { aluno_id} = req.params;
+    async deletar(req, res) {
+        const { aluno_id } = req.params;
 
         await Alunos.destroy({
             where : {

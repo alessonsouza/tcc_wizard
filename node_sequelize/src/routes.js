@@ -12,48 +12,35 @@ const router = express.Router();
 var options = {
     origin: 'http://localhost:8080'
 }
-// router.get('/', (req, res) => {
-//     return res.send('viado!');
-// });
 
-router.get('/users', authMiddleware, UserController.index);
-
-
-router.post('/users', UserController.store);
-router.put('/users/:user_id', UserController.update);
-router.delete('/users/:user_id', UserController.delete);
+router.get('/users', authMiddleware, UserController.pesquisar);
+router.post('/users', UserController.salvar);
+router.put('/users/:user_id', UserController.atualizar);
+router.delete('/users/:user_id', UserController.deletar);
 //login
 router.post('/users/login', cors(options), UserController.login);
 router.get('/users/load-session', UserController.loadSession);
 
-router.get('/alunos', AlunoController.index);
-router.post('/alunos', AlunoController.store);
-router.put('/alunos/:aluno_id', AlunoController.update);
-router.delete('/alunos/:aluno_id', AlunoController.delete);
-
-router.get('/contratos', ContratoController.index);
-router.get('/contratos/getById/:id', ContratoController.getById);
-router.post('/contratos', ContratoController.store);
-router.put('/contratos/:id_con', ContratoController.update);
-router.delete('/contratos/:id', ContratoController.delete);
-
-
-
 router.use(authMiddleware);
 
-router.get('/users/:user_id/address', AddressController.index);
-router.post('/users/:user_id/address', AddressController.store);
-router.put('/users/:id/address', AddressController.update);
-router.delete('/users/:id/address', AddressController.delete);
+router.get('/alunos', AlunoController.pesquisar);
+router.post('/alunos', AlunoController.salvar);
+router.put('/alunos/:aluno_id', AlunoController.atualizar);
+router.delete('/alunos/:aluno_id', AlunoController.deletar);
 
-router.get('/users/:user_id/courses', CourseController.index);
-router.post('/users/:user_id/courses', CourseController.store);
-router.delete('/users/:user_id/courses', CourseController.delete);
+router.get('/contratos', ContratoController.pesquisar);
+router.get('/contratos/getById/:id', ContratoController.getById);
+router.post('/contratos', ContratoController.salvar);
+router.put('/contratos/:id_con', ContratoController.atualizar);
+router.delete('/contratos/:id', ContratoController.deletar);
 
+router.get('/users/:user_id/address', AddressController.pesquisar);
+router.post('/users/:user_id/address', AddressController.salvar);
+router.put('/users/:id/address', AddressController.atualizar);
+router.delete('/users/:id/address', AddressController.deletar);
 
-
-
-
-
+router.get('/users/:user_id/courses', CourseController.pesquisar);
+router.post('/users/:user_id/courses', CourseController.salvar);
+router.delete('/users/:user_id/courses', CourseController.deletar);
 
 module.exports = router;

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const jwt = require('jsonwebtoken');
 const authConfig = require('../config/auth.json');
+const { salvar } = require('./UserController.js');
 
 
 function generateToken(params = {}) {
@@ -14,7 +15,7 @@ function generateToken(params = {}) {
 
 
 module.exports = {
-    async index(req, res) {
+    async pesquisar(req, res) {
         //busca tudo que tem na tabela
         let contratos = await Contratos.findAll({
             include: { model: Alunos,
@@ -35,14 +36,15 @@ module.exports = {
         }
         return res.status(200).send({ contratos });
     },
-    async store(req, res) {
+    async salvar(req, res) {
         const {
             aluno_id,
             curso,
             professor,
             horario,
             dia_semana,
-            livro
+            livro,
+            observacoes
         } = req.body; //pego os dados
 
 
@@ -53,7 +55,8 @@ module.exports = {
             professor,
             horario,
             dia_semana,
-            livro
+            livro,
+            observacoes
         }); // crio o usuário
 
         const token = generateToken({ contratos });
@@ -65,7 +68,7 @@ module.exports = {
         })
 
     },
-    async update(req, res) {
+    async atualizar(req, res) {
 
         const {
             aluno_id,
@@ -74,6 +77,7 @@ module.exports = {
             horario,
             dia_semana,
             livro,
+            observacoes,
             createdAt,
             updatedAt
         } = req.body;
@@ -89,7 +93,8 @@ module.exports = {
             professor,
             horario,
             dia_semana,
-            livro
+            livro,
+            observacoes
         }, {
             where: {
                 id: id_con
@@ -103,7 +108,7 @@ module.exports = {
 
 
     },
-    async delete(req, res) {
+    async deletar(req, res) {
         const { id } = req.params;
 
         await Contratos.destroy({

@@ -54,7 +54,7 @@ module.exports = {
         });
      },
 
-    async index(req, res) {
+    async pesquisar(req, res) {
         //busca tudo que tem na tabela
         let users = await User.findAll();
 
@@ -91,7 +91,7 @@ module.exports = {
 
         // return res.status(200).send({ users });
     },
-    async store(req, res) {
+    async salvar(req, res) {
         const { name, password, email} = req.body; //pego os dados
 
         const user = await User.create({ name, password, email}); // crio o usuário
@@ -105,7 +105,7 @@ module.exports = {
         })
 
     },
-    async update(req, res) {
+    async atualizar(req, res) {
 
         const { name, password, email} = req.body;
         const { user_id} = req.params;
@@ -128,7 +128,7 @@ module.exports = {
 
 
     },
-    async delete(req, res) {
+    async deletar(req, res) {
         const { user_id} = req.params;
 
         await User.destroy({

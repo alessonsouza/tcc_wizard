@@ -17,45 +17,36 @@
             <span class="md-list-item-text">Home</span>
           </md-list-item>
       </md-list>
-      <md-list md-expand>
-        <md-list-item md-expand>
-          <md-icon>home</md-icon>
-            <span class="md-list-item-text">Cadastros</span>
-
-          <md-list slot="md-expand">
-
-            <md-list-item to="/users" class="md-inset">Usuários</md-list-item>
-            <md-list-item to="/alunos" class="md-inset">Alunos</md-list-item>
-            <md-list-item to="/contratos" class="md-inset">Agendamento</md-list-item>
-          </md-list>
-        </md-list-item>
-      </md-list>
-          <!-- <md-list-item md-expand slot="md-expand" to="/">
-            <md-icon>home
-              </md-icon>
-            <span class="md-list-item-text">Home</span>
-
+         <md-list md-expand>
+          <md-list-item md-expand>
+          <md-icon>list</md-icon>
+          <span class="md-list-item-text">Cadastros</span>
             <md-list slot="md-expand">
-            <md-list-item class="md-inset">World</md-list-item>
-            <md-list-item class="md-inset">Europe</md-list-item>
-            <md-list-item class="md-inset">South America</md-list-item>
-          </md-list>
-          </md-list-item> -->
-
-          <!-- <md-list-item to="/users">
-            <md-icon>client</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
+              <md-list-item to="/users" class="md-inset">
+              <md-icon>people
+                </md-icon>
+              <span class="md-list-item-text">Usuários</span>
+              </md-list-item>
+              <md-list-item to="/alunos" class="md-inset">
+              <md-icon>people
+                </md-icon>
+              <span class="md-list-item-text">Alunos</span>
+              </md-list-item>
+              <md-list-item to="/contratos" class="md-inset">
+              <md-icon>book
+                </md-icon>
+              <span class="md-list-item-text">Agendamentos</span>
+              </md-list-item>
+            </md-list>
           </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
+         </md-list>
+        <md-list>
+         <md-list-item to="/login" v-on:click="logout()">
+            <md-icon>input
+              </md-icon>
+            <span class="md-list-item-text">Sair</span>
           </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item> -->
+        </md-list>
 
       </md-app-drawer>
       <md-app-content>
@@ -122,16 +113,16 @@
                 <md-button class="md-fab md-primary "  @click="update(item, 'update')">
                     <md-icon>edit</md-icon>
                 </md-button>
-                <md-button class="md-fab md-secondary md-right" @click="deleteVisible = !deleteVisible">
+                <md-button class="md-fab md-secondary md-right" @click="deletar(item)">
                     <md-icon>delete</md-icon>
                 </md-button>
                   <md-dialog-confirm
                    :md-active.sync="deleteVisible"
-                   md-title="Tem certeza que deseja excluir este usuário ?"
-                   md-confirm-text="Sim"
-                   md-cancel-text="Não"
+                   md-title="Usuário excluído com sucesso"
+                   md-confirm-text="ok"
+                   md-cancel-text=""
                    @md-cancel="onCancel"
-                   @click="deletar(item.id)"/>
+                   @md-confirm="onCancel"/>
               </md-table-row>
               <!-- <md-table-row>
                 <md-table-cell md-numeric>2</md-table-cell>
@@ -171,9 +162,14 @@
 
    // Demo purposes only
   .md-drawer {
-    width: 230px;
+    width: 530px;
     max-width: calc(100vw - 125px);
   }
+
+  .md-app-content {
+    background-image: linear-gradient(to bottom, white, rgb(8, 60, 109));
+  }
+
   //  .md-dialog {
   //   max-width: 768px;
   // }
@@ -197,18 +193,23 @@ export default {
   methods: {
     ...mapActions('users', ['ActionGetUsers']),
     ...mapActions('addUser', ['ActionDeleteUsers']),
+    ...mapActions('auth', ['ActionSignOut']),
     update (data, action) {
       this.items = data
       this.userVisible = true
       this.updated = false
       this.action = action
     },
-    async deletar (id) {
-      await this.ActionDeleteUsers(id)
-      this.deleteVisible = false
+    async deletar (item) {
+      await this.ActionDeleteUsers(item.id)
+      this.deleteVisible = true
+      this.ActionGetUsers()
     },
     onCancel () {
       this.deleteVisible = false
+    },
+    logout () {
+      this.ActionSignOut()
     }
   },
   computed: {

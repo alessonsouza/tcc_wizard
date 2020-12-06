@@ -140,8 +140,15 @@ export default {
       } else {
         console.log(this.form)
         await this.ActionInsertAlunos(this.form)
-        this.ActionGetAlunos()
+        this.cleanFields()
         this.alunosVisible = false
+        this.ActionGetAlunos()
+      }
+    },
+    cleanFields () {
+      let field
+      for (field in this.form) {
+        this.form[field] = ''
       }
     }
   },
@@ -150,9 +157,6 @@ export default {
     if (this.typeAction === 'update') {
       this.form = this.localform
     }
-  },
-  beforeDestroy () {
-    this.form = null
   }
 }
 </script>

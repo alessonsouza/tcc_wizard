@@ -3,7 +3,7 @@ const Address = require('../models/Address.js');
 
 
 module.exports = {
-    async index(req, res) {
+    async pesquisar(req, res) {
         //busca tudo que tem na tabela
 
         const { user_id } = req.params;
@@ -21,7 +21,7 @@ module.exports = {
         return res.status(200).send(user);
     },
 
-    async store(req, res) {
+    async salvar(req, res) {
 
 
         const {user_id} = req.params;
@@ -50,7 +50,7 @@ module.exports = {
         });
 
     },
-    async update(req, res) {
+    async atualizar(req, res) {
 
         const {  street, number, district, city} = req.body;
         const id = req.params.id;
@@ -70,7 +70,7 @@ module.exports = {
 
 
     },
-    async delete(req, res) {
+    async deletar(req, res) {
         const id = req.params.id;
 
         const address = await Address.findByPk(id);
