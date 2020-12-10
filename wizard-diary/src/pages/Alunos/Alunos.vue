@@ -41,7 +41,7 @@
           </md-list-item>
          </md-list>
         <md-list>
-         <md-list-item v-on:click="logout()" to="/login">
+         <md-list-item v-on:click="logout()">
             <md-icon>lock
               </md-icon>
             <span class="md-list-item-text">Sair</span>
@@ -211,6 +211,7 @@ export default {
     },
     logout () {
       this.ActionSignOut()
+      this.$router.push({ name: 'login' })
     }
   },
   data: () => ({

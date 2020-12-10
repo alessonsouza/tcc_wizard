@@ -41,7 +41,7 @@
           </md-list-item>
          </md-list>
         <md-list>
-         <md-list-item to="/login" v-on:click="logout()">
+         <md-list-item v-on:click="logout()">
             <md-icon>input
               </md-icon>
             <span class="md-list-item-text">Sair</span>
@@ -210,6 +210,7 @@ export default {
     },
     logout () {
       this.ActionSignOut()
+      this.$router.push({ name: 'login' })
     }
   },
   computed: {
@@ -222,26 +223,6 @@ export default {
     updated: true,
     action: '',
     items: {}
-    // users: [
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   },
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   },
-    //   {
-    //     email: 'alesson@gmail.com',
-    //     id: 3,
-    //     isLogged: true,
-    //     name: 'Alesson'
-    //   }
-    // ]
   })
 }
 </script>
